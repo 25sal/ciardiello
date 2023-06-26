@@ -70,15 +70,15 @@ model_params = dict(metrics=["mae", "mape"], enlarge=enlarge)
 fit_params = dict(epochs=30, verbose=2)  # set epochs between 30 and 75
 
 modelname = (architecture.__name__ + "-x{}".format(enlarge))
+# modelname = "models.stacked_cnn_rnn_improved-x1"
 modelpath = os.path.join("output", modelname)
 os.makedirs(os.path.join(modelpath, "final"), exist_ok=True)
-print(modelpath)
 
 # write model architecture to JSON file
 model = architecture.create(**model_params)
 with open(os.path.join(modelpath, "model.json"), "w") as fp:
     fp.write(model.to_json())
-
+exit(0)
 
 def process_split(xt, yt, i, fit_params):
     # set allow_growth in subprocess
